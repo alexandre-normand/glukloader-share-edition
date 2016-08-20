@@ -15,7 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        let fetcher = DexcomShareFetcher(username: "TOCHANGE", password: "TOCHANGE")
+        let sessionId = fetcher.getAllDataSince(NSDate.distantPast())
+        print(sessionId)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

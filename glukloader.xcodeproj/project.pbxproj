@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A92A2C4AF3D5158075DFD17 /* Pods_glukloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */; };
 		1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D37B1D68112300CDEC6A /* AppDelegate.swift */; };
 		1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D37D1D68112300CDEC6A /* glukloader.xcdatamodeld */; };
 		1EB6D3811D68112300CDEC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D3801D68112300CDEC6A /* Assets.xcassets */; };
 		1EB6D3841D68112300CDEC6A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D3821D68112300CDEC6A /* MainMenu.xib */; };
 		1EB6D38F1D68112300CDEC6A /* glukloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D38E1D68112300CDEC6A /* glukloaderTests.swift */; };
 		1EB6D39A1D68112300CDEC6A /* glukloaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D3991D68112300CDEC6A /* glukloaderUITests.swift */; };
+		1EB6D3A91D6814FC00CDEC6A /* DexcomShareFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3E4A63E65DFF46C4C2BD4D /* Pods-glukloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glukloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-glukloader/Pods-glukloader.release.xcconfig"; sourceTree = "<group>"; };
 		1EB6D3781D68112300CDEC6A /* glukloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = glukloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB6D37B1D68112300CDEC6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EB6D37E1D68112300CDEC6A /* glukloader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = glukloader.xcdatamodel; sourceTree = "<group>"; };
@@ -45,6 +48,9 @@
 		1EB6D3951D68112300CDEC6A /* glukloaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = glukloaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB6D3991D68112300CDEC6A /* glukloaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glukloaderUITests.swift; sourceTree = "<group>"; };
 		1EB6D39B1D68112300CDEC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DexcomShareFetcher.swift; sourceTree = "<group>"; };
+		573C2F74CF0682B2346B19F6 /* Pods-glukloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glukloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-glukloader/Pods-glukloader.debug.xcconfig"; sourceTree = "<group>"; };
+		D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_glukloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A92A2C4AF3D5158075DFD17 /* Pods_glukloader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DBA240839DE07B1933F3A9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				573C2F74CF0682B2346B19F6 /* Pods-glukloader.debug.xcconfig */,
+				1E3E4A63E65DFF46C4C2BD4D /* Pods-glukloader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		1EB6D36F1D68112300CDEC6A = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +95,8 @@
 				1EB6D38D1D68112300CDEC6A /* glukloaderTests */,
 				1EB6D3981D68112300CDEC6A /* glukloaderUITests */,
 				1EB6D3791D68112300CDEC6A /* Products */,
+				0DBA240839DE07B1933F3A9E /* Pods */,
+				895AAACCCF462B236AB425B7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +118,7 @@
 				1EB6D3821D68112300CDEC6A /* MainMenu.xib */,
 				1EB6D3851D68112300CDEC6A /* Info.plist */,
 				1EB6D37D1D68112300CDEC6A /* glukloader.xcdatamodeld */,
+				1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */,
 			);
 			path = glukloader;
 			sourceTree = "<group>";
@@ -122,6 +141,14 @@
 			path = glukloaderUITests;
 			sourceTree = "<group>";
 		};
+		895AAACCCF462B236AB425B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EB6D39E1D68112300CDEC6A /* Build configuration list for PBXNativeTarget "glukloader" */;
 			buildPhases = (
+				929BD9E78FAE39A818044E64 /* [CP] Check Pods Manifest.lock */,
 				1EB6D3741D68112300CDEC6A /* Sources */,
 				1EB6D3751D68112300CDEC6A /* Frameworks */,
 				1EB6D3761D68112300CDEC6A /* Resources */,
+				7639BC7EC02DFFDD94E73DAC /* [CP] Embed Pods Frameworks */,
+				5263C1F263DAFC935C08944D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,11 +277,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5263C1F263DAFC935C08944D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-glukloader/Pods-glukloader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7639BC7EC02DFFDD94E73DAC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-glukloader/Pods-glukloader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		929BD9E78FAE39A818044E64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1EB6D3741D68112300CDEC6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB6D3A91D6814FC00CDEC6A /* DexcomShareFetcher.swift in Sources */,
 				1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */,
 				1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */,
 			);
@@ -384,6 +463,7 @@
 		};
 		1EB6D39F1D68112300CDEC6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 573C2F74CF0682B2346B19F6 /* Pods-glukloader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -396,6 +476,7 @@
 		};
 		1EB6D3A01D68112300CDEC6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E3E4A63E65DFF46C4C2BD4D /* Pods-glukloader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -475,6 +556,7 @@
 				1EB6D3A01D68112300CDEC6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1EB6D3A11D68112300CDEC6A /* Build configuration list for PBXNativeTarget "glukloaderTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +565,7 @@
 				1EB6D3A31D68112300CDEC6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1EB6D3A41D68112300CDEC6A /* Build configuration list for PBXNativeTarget "glukloaderUITests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +574,7 @@
 				1EB6D3A61D68112300CDEC6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
