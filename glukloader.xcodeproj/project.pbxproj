@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A92A2C4AF3D5158075DFD17 /* Pods_glukloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */; };
+		1E6F13841D6969F900158524 /* GlukitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F13831D6969F900158524 /* GlukitTime.swift */; };
+		1E6F13861D696B1700158524 /* GlucoseRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F13851D696B1700158524 /* GlucoseRead.swift */; };
 		1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D37B1D68112300CDEC6A /* AppDelegate.swift */; };
 		1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D37D1D68112300CDEC6A /* glukloader.xcdatamodeld */; };
 		1EB6D3811D68112300CDEC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D3801D68112300CDEC6A /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		1E3E4A63E65DFF46C4C2BD4D /* Pods-glukloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glukloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-glukloader/Pods-glukloader.release.xcconfig"; sourceTree = "<group>"; };
+		1E6F13831D6969F900158524 /* GlukitTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlukitTime.swift; sourceTree = "<group>"; };
+		1E6F13851D696B1700158524 /* GlucoseRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRead.swift; sourceTree = "<group>"; };
 		1EB6D3781D68112300CDEC6A /* glukloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = glukloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB6D37B1D68112300CDEC6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EB6D37E1D68112300CDEC6A /* glukloader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = glukloader.xcdatamodel; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 				1EB6D3851D68112300CDEC6A /* Info.plist */,
 				1EB6D37D1D68112300CDEC6A /* glukloader.xcdatamodeld */,
 				1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */,
+				1E6F13831D6969F900158524 /* GlukitTime.swift */,
+				1E6F13851D696B1700158524 /* GlucoseRead.swift */,
 			);
 			path = glukloader;
 			sourceTree = "<group>";
@@ -332,7 +338,9 @@
 			files = (
 				1EB6D3A91D6814FC00CDEC6A /* DexcomShareFetcher.swift in Sources */,
 				1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */,
+				1E6F13841D6969F900158524 /* GlukitTime.swift in Sources */,
 				1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */,
+				1E6F13861D696B1700158524 /* GlucoseRead.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

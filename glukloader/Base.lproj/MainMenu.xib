@@ -48,8 +48,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="895" y="968" width="469" height="40"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <value key="minSize" type="size" width="489" height="60"/>
-            <value key="maxSize" type="size" width="489" height="60"/>
+            <value key="minSize" type="size" width="469" height="40"/>
+            <value key="maxSize" type="size" width="469" height="40"/>
             <view key="contentView" id="Xuc-BH-0xb">
                 <rect key="frame" x="0.0" y="0.0" width="469" height="40"/>
                 <autoresizingMask key="autoresizingMask"/>
