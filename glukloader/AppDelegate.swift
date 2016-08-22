@@ -7,6 +7,23 @@
 //
 
 import Cocoa
+import p2_OAuth2
+
+//Example of GlukitSecrets (not to be committed):
+//struct GlukitSecrets {
+//    static let clientId = "id"
+//    static let clientSecret = "secret"
+//}
+
+let oauth2Settings = [
+    "client_id": GlukitSecrets.clientId,
+    "client_secret": GlukitSecrets.clientSecret,
+    "authorize_uri": "https://glukit.appspot.com/authorize",
+    "token_uri": "https://glukit.appspot.com/token",
+    "scope": "",
+    "redirect_uris": ["x-glukloader://oauth/callback"],   
+    "keychain": true,
+    ] as OAuth2JSON
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
