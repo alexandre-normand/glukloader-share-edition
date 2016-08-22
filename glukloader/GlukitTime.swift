@@ -7,17 +7,14 @@
 //
 
 import Foundation
+import SwiftSerializer
 
-class GlukitTime : CustomStringConvertible {
+class GlukitTime : Serializable {
     var timezone: String
     var timestamp: Int64
     
     init(timestamp: Int64, timezone: String) {
         self.timestamp = timestamp
         self.timezone = timezone
-    }
-    
-    var description:String {
-        return "GlukitTime[timestamp=\(self.timestamp), timezone=\(self.timezone)]"
     }
 }

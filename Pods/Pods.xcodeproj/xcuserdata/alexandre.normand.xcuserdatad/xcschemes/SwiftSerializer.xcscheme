@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79C040AFDDCE1BCBF6D8B5EB0B85887F"
-               BlueprintName = "Alamofire"
+               BlueprintIdentifier = "427A7AA684E7759F7EF9B5CC38B7807C"
+               BlueprintName = "SwiftSerializer"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Alamofire.framework">
+               BuildableName = "SwiftSerializer.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

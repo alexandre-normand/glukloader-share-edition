@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SwiftSerializer
 
-class GlucoseRead : CustomStringConvertible {
+class GlucoseRead : Serializable {
     var value: Double
     var unit: String
     var time: GlukitTime
@@ -17,9 +18,5 @@ class GlucoseRead : CustomStringConvertible {
         self.value = value
         self.unit = unit
         self.time = time
-    }
-    
-    var description:String {
-        return "GlucoseRead[value=\(self.value), unit=\(self.unit), time=\(self.time)]"
     }
 }

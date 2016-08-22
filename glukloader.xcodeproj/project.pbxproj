@@ -16,7 +16,7 @@
 		1EB6D3841D68112300CDEC6A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D3821D68112300CDEC6A /* MainMenu.xib */; };
 		1EB6D38F1D68112300CDEC6A /* glukloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D38E1D68112300CDEC6A /* glukloaderTests.swift */; };
 		1EB6D39A1D68112300CDEC6A /* glukloaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D3991D68112300CDEC6A /* glukloaderUITests.swift */; };
-		1EB6D3A91D6814FC00CDEC6A /* DexcomShareFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */; };
+		1EB6D3A91D6814FC00CDEC6A /* DexcomShareSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D3A81D6814FC00CDEC6A /* DexcomShareSyncManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		1EB6D3951D68112300CDEC6A /* glukloaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = glukloaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB6D3991D68112300CDEC6A /* glukloaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glukloaderUITests.swift; sourceTree = "<group>"; };
 		1EB6D39B1D68112300CDEC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DexcomShareFetcher.swift; sourceTree = "<group>"; };
+		1EB6D3A81D6814FC00CDEC6A /* DexcomShareSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DexcomShareSyncManager.swift; sourceTree = "<group>"; };
 		573C2F74CF0682B2346B19F6 /* Pods-glukloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glukloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-glukloader/Pods-glukloader.debug.xcconfig"; sourceTree = "<group>"; };
 		D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_glukloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,7 +122,7 @@
 				1EB6D3821D68112300CDEC6A /* MainMenu.xib */,
 				1EB6D3851D68112300CDEC6A /* Info.plist */,
 				1EB6D37D1D68112300CDEC6A /* glukloader.xcdatamodeld */,
-				1EB6D3A81D6814FC00CDEC6A /* DexcomShareFetcher.swift */,
+				1EB6D3A81D6814FC00CDEC6A /* DexcomShareSyncManager.swift */,
 				1E6F13831D6969F900158524 /* GlukitTime.swift */,
 				1E6F13851D696B1700158524 /* GlucoseRead.swift */,
 			);
@@ -336,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EB6D3A91D6814FC00CDEC6A /* DexcomShareFetcher.swift in Sources */,
+				1EB6D3A91D6814FC00CDEC6A /* DexcomShareSyncManager.swift in Sources */,
 				1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */,
 				1E6F13841D6969F900158524 /* GlukitTime.swift in Sources */,
 				1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */,

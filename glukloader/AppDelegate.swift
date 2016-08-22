@@ -15,8 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        let fetcher = DexcomShareFetcher(username: "TOCHANGE", password: "TOCHANGE", sessionId: nil)
-        let sessionId = fetcher.getAllDataSince(NSDate.distantPast())
+        let fetcher = DexcomShareSyncManager(username: "TOCHANGE", password: "TOCHANGE", sessionId: nil)
+        let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
         print("saved session id is \(sessionId)")
     }
 

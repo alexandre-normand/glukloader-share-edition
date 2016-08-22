@@ -9,8 +9,9 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import SwiftSerializer
 
-class DexcomShareFetcher {
+class DexcomShareSyncManager {
     var username: String
     var password: String
     var sessionId: String?
@@ -21,7 +22,7 @@ class DexcomShareFetcher {
         self.sessionId = sessionId
     }
     
-    func getAllDataSince(sinceExclusive: NSDate) -> String? {
+    func syncNewDataSince(sinceExclusive: NSDate) -> String? {
         let headers = [ "User-Agent": "Dexcom Share/3.0.2.11 CFNetwork/711.2.23 Darwin/14.0.0"]
         let parameters = [ "accountName": self.username,
                            "password": self.password,
@@ -39,21 +40,16 @@ class DexcomShareFetcher {
                             if let glucoseResult = response.result.value {
                                 let json = JSON(glucoseResult)
                                 
+                                var reads: [GlucoseRead] = []
                                 for (_, read):(String, JSON) in json {
                                     let value = Double(read["Value"].rawString()!)
                                     let timestampString = String(read["WT"].rawString()!.characters.dropFirst(6).dropLast(2))
                                     let timestamp = Double(timestampString)
-//                                    let timezoneString = String(read["DT"].rawString()!.characters.dropFirst(6).dropLast(6))
-//                                    let offsetSign = timezoneString[timezoneString.endIndex.predecessor()]
-//                                    let absoluteOffsetFromGmtInSeconds = Int(String(timezoneString.characters.dropLast()))
-//                                    let offsetFromGmtInSeconds = offsetSign == "-" ? absoluteOffsetFromGmtInSeconds! * -1 : absoluteOffsetFromGmtInSeconds
-//                                    let readLocalTime = NSDate(timeIntervalSince1970: timestamp! / 1000)
-//                                    let localTimeZone = NSTimeZone(forSecondsFromGMT: offsetFromGmtInSeconds! / 1000)
                                     let localTimeZone = NSTimeZone.localTimeZone()
-                                    let glucoseRead = GlucoseRead(value: value!, unit: "mgPerDL", time: GlukitTime(timestamp: Int64(timestamp!), timezone: localTimeZone.name))
-                                    
-                                    print("read: \(glucoseRead)")
+                                    reads.append(GlucoseRead(value: value!, unit: "mgPerDL", time: GlukitTime(timestamp: Int64(timestamp!), timezone: localTimeZone.name)))
                                 }
+                                
+                                print("reads json: \(reads.toJsonString()!)")
                             }
                     }
                     debugPrint(glucoseReq)
