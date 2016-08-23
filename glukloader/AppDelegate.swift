@@ -18,25 +18,43 @@ import p2_OAuth2
 let oauth2Settings = [
     "client_id": GlukitSecrets.clientId,
     "client_secret": GlukitSecrets.clientSecret,
+    "consumer_key": GlukitSecrets.clientId,
+    "consumer_secret": GlukitSecrets.clientSecret,
     "authorize_uri": "https://glukit.appspot.com/authorize",
     "token_uri": "https://glukit.appspot.com/token",
     "scope": "",
     "redirect_uris": ["x-glukloader://oauth/callback"],   
     "keychain": true,
     ] as OAuth2JSON
+let oauth2 = OAuth2CodeGrant(settings: oauth2Settings)
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     @IBOutlet weak var window: NSWindow!
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        let fetcher = DexcomShareSyncManager(username: "TOCHANGE", password: "TOCHANGE", sessionId: nil)
-        let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
-        print("saved session id is \(sessionId)")
+        oauth2.onAuthorize = { parameters in
+            print("Did authorize with parameters: \(parameters)")
+        }
+        oauth2.onFailure = { error in        // `error` is nil on cancel
+            if let error = error {
+                print("Authorization went wrong: \(error)")
+            }
+        }
+        
+        oauth2.authorize()
+        //let fetcher = DexcomShareSyncManager(username: "TOCHANGE", password: "TOCHANGE", sessionId: nil)
+        //let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
+        //print("saved session id is \(sessionId)")
     }
 
+    func applicationWillFinishLaunching(notification: NSNotification) {
+        NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector:#selector(AppDelegate.handleGetURLEvent(_:withReplyEvent:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+        
+    }
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
@@ -181,6 +199,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // If we got here, it is time to quit.
         return .TerminateNow
     }
-
+    
+    func handleGetURLEvent(event: NSAppleEventDescriptor!, withReplyEvent: NSAppleEventDescriptor!) {
+        if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue, url = NSURL(string: urlString) {
+            if (url.host == "oauth") {
+                oauth2.handleRedirectURL(url)
+            } else {
+                // Google provider is the only one wuth your.bundle.id url schema.
+                oauth2.handleRedirectURL(url)
+            }
+        }
+    }
 }
 
