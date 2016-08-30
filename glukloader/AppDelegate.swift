@@ -31,10 +31,20 @@ let oauth2 = OAuth2CodeGrant(settings: oauth2Settings)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    @IBOutlet weak var window: NSWindow!
-
-
+    @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet var autoStartMenuItem: NSMenuItem!
+    var statusBar: NSStatusItem!;
+    let menuBarIcon = GlukloaderYosemite.imageOfGlukitIcon
+    
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        self.statusBar = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+        
+        self.statusBar.menu = self.statusMenu
+        self.statusBar.image = menuBarIcon
+
+        
         oauth2.onAuthorize = { parameters in
             print("Did authorize with parameters: \(parameters)")
         }
@@ -153,7 +163,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-
+    
+    @IBAction func quit(sender: AnyObject!) {
+        NSApp.terminate(self)
+    }
+    
+    @IBAction func toggleAutoStart(sender: AnyObject!) {
+        
+    }
+    
     func windowWillReturnUndoManager(window: NSWindow) -> NSUndoManager? {
         // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
         return managedObjectContext.undoManager
@@ -210,5 +228,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    
 }
 
