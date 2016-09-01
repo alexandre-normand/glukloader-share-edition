@@ -34,7 +34,7 @@ class DexcomShareSyncManager {
                     let sessionId = result.stringByTrimmingCharactersInSet(NSCharacterSet.init(charactersInString: "\""))
                     print("session id is \(sessionId)")
                     
-                    let glucoseRequestParams = [ "sessionId": sessionId, "minutes": "60", "maxCount": "100"]
+                    let glucoseRequestParams = [ "sessionId": sessionId, "minutes": "1440", "maxCount": "288"]
                     let glucoseReq = Alamofire.request(.POST, "https://share1.dexcom.com/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues", parameters: glucoseRequestParams, headers: headers, encoding: .URLEncodedInURL)
                         .responseJSON { response in
                             if let glucoseResult = response.result.value {
@@ -49,7 +49,7 @@ class DexcomShareSyncManager {
                                     reads.append(GlucoseRead(value: value!, unit: "mgPerDL", time: GlukitTime(timestamp: Int64(timestamp!), timezone: localTimeZone.name)))
                                 }
                                 
-                                print("reads json: \(reads.toJsonString()!)")
+                                print("reads json: \(reads.toJsonString(true)!)")
                             }
                     }
                     debugPrint(glucoseReq)

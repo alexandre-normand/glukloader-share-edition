@@ -55,9 +55,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         oauth2.authorize()
-        //let fetcher = DexcomShareSyncManager(username: "TOCHANGE", password: "TOCHANGE", sessionId: nil)
-        //let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
-        //print("saved session id is \(sessionId)")
+        let fetcher = DexcomShareSyncManager(username: "CHANGE", password: "CHANGE", sessionId: nil)
+        let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
+        print("saved session id is \(sessionId)")
     }
 
     func applicationWillFinishLaunching(notification: NSNotification) {
