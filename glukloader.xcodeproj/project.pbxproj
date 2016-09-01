@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0A92A2C4AF3D5158075DFD17 /* Pods_glukloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14B937205AEC76BCA35CFBA /* Pods_glukloader.framework */; };
 		1E1EEC991D753283006BF851 /* GlukloaderYosemite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1EEC981D753283006BF851 /* GlukloaderYosemite.swift */; };
+		1E6D28B81D77C42B00BB913F /* GlukloaderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D28B71D77C42B00BB913F /* GlukloaderUtils.swift */; };
+		1E6D28BA1D77C7C400BB913F /* SyncTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D28B91D77C7C400BB913F /* SyncTag.swift */; };
+		1E6D28BC1D77D0F700BB913F /* GlukitTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D28BB1D77D0F700BB913F /* GlukitTransmitter.swift */; };
 		1E6F13841D6969F900158524 /* GlukitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F13831D6969F900158524 /* GlukitTime.swift */; };
 		1E6F13861D696B1700158524 /* GlucoseRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F13851D696B1700158524 /* GlucoseRead.swift */; };
 		1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB6D37B1D68112300CDEC6A /* AppDelegate.swift */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		1E1EEC981D753283006BF851 /* GlukloaderYosemite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlukloaderYosemite.swift; sourceTree = "<group>"; };
 		1E3E4A63E65DFF46C4C2BD4D /* Pods-glukloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glukloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-glukloader/Pods-glukloader.release.xcconfig"; sourceTree = "<group>"; };
+		1E6D28B71D77C42B00BB913F /* GlukloaderUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlukloaderUtils.swift; sourceTree = "<group>"; };
+		1E6D28B91D77C7C400BB913F /* SyncTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTag.swift; sourceTree = "<group>"; };
+		1E6D28BB1D77D0F700BB913F /* GlukitTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlukitTransmitter.swift; sourceTree = "<group>"; };
 		1E6F13831D6969F900158524 /* GlukitTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlukitTime.swift; sourceTree = "<group>"; };
 		1E6F13851D696B1700158524 /* GlucoseRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRead.swift; sourceTree = "<group>"; };
 		1EB6D3781D68112300CDEC6A /* glukloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = glukloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +137,9 @@
 				1E6F13831D6969F900158524 /* GlukitTime.swift */,
 				1E6F13851D696B1700158524 /* GlucoseRead.swift */,
 				1EDAEF6B1D6ABEC700249F91 /* GlukitSecrets.swift */,
+				1E6D28B71D77C42B00BB913F /* GlukloaderUtils.swift */,
+				1E6D28B91D77C7C400BB913F /* SyncTag.swift */,
+				1E6D28BB1D77D0F700BB913F /* GlukitTransmitter.swift */,
 			);
 			path = glukloader;
 			sourceTree = "<group>";
@@ -344,7 +353,10 @@
 			files = (
 				1EB6D3A91D6814FC00CDEC6A /* DexcomShareSyncManager.swift in Sources */,
 				1EDAEF6C1D6ABEC700249F91 /* GlukitSecrets.swift in Sources */,
+				1E6D28BA1D77C7C400BB913F /* SyncTag.swift in Sources */,
 				1EB6D37C1D68112300CDEC6A /* AppDelegate.swift in Sources */,
+				1E6D28B81D77C42B00BB913F /* GlukloaderUtils.swift in Sources */,
+				1E6D28BC1D77D0F700BB913F /* GlukitTransmitter.swift in Sources */,
 				1E6F13841D6969F900158524 /* GlukitTime.swift in Sources */,
 				1E1EEC991D753283006BF851 /* GlukloaderYosemite.swift in Sources */,
 				1EB6D37F1D68112300CDEC6A /* glukloader.xcdatamodeld in Sources */,

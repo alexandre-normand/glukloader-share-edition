@@ -14,15 +14,15 @@ import SwiftSerializer
 class DexcomShareSyncManager {
     var username: String
     var password: String
-    var sessionId: String?
+    var transmitter: GlukitTransmitter
     
-    init(username: String, password: String, sessionId: String?) {
+    init(username: String, password: String, transmitter: GlukitTransmitter) {
         self.username = username
         self.password = password
-        self.sessionId = sessionId
+        self.transmitter = transmitter
     }
     
-    func syncNewDataSince(sinceExclusive: NSDate) -> String? {
+    func syncNewDataSince(syncTag: SyncTag) {
         let headers = [ "User-Agent": "Dexcom Share/3.0.2.11 CFNetwork/711.2.23 Darwin/14.0.0"]
         let parameters = [ "accountName": self.username,
                            "password": self.password,
@@ -34,8 +34,8 @@ class DexcomShareSyncManager {
                     let sessionId = result.stringByTrimmingCharactersInSet(NSCharacterSet.init(charactersInString: "\""))
                     print("session id is \(sessionId)")
                     
-                    let glucoseRequestParams = [ "sessionId": sessionId, "minutes": "1440", "maxCount": "288"]
-                    let glucoseReq = Alamofire.request(.POST, "https://share1.dexcom.com/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues", parameters: glucoseRequestParams, headers: headers, encoding: .URLEncodedInURL)
+                    let glucoseRequestParams = [ "sessionId": sessionId, "minutes": "2100", "maxCount": "420"]
+                    Alamofire.request(.POST, "https://share1.dexcom.com/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues", parameters: glucoseRequestParams, headers: headers, encoding: .URLEncodedInURL)
                         .responseJSON { response in
                             if let glucoseResult = response.result.value {
                                 let json = JSON(glucoseResult)
@@ -49,13 +49,22 @@ class DexcomShareSyncManager {
                                     reads.append(GlucoseRead(value: value!, unit: "mgPerDL", time: GlukitTime(timestamp: Int64(timestamp!), timezone: localTimeZone.name)))
                                 }
                                 
-                                print("reads json: \(reads.toJsonString(true)!)")
+                                if (reads.count > 0) {
+                                    let newReads = reads.filter { $0.time.timestamp > syncTag.lastGlucoseReadTimestamp }
+                                    let sortedNewReads = newReads.sort { $1.time.timestamp > $0.time.timestamp }
+                                    print("reads json: \(sortedNewReads.toJsonString(true)!)")
+                                    
+                                    GlukloaderUtils.saveGlucoseReadBatchToDisk(sortedNewReads)
+                                    
+                                    self.transmitter.transmit(sortedNewReads)
+                                    GlukloaderUtils.saveSyncTagToDisk(SyncTag(lastGlucoseReadTimestamp: sortedNewReads.last?.time.timestamp))
+                                } else {
+                                    print("No new records found")
+                                }
+                                
                             }
                     }
-                    debugPrint(glucoseReq)
                 }
         }
-        
-        return self.sessionId
     }
 }

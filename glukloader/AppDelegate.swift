@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var autoStartMenuItem: NSMenuItem!
     var statusBar: NSStatusItem!;
     let menuBarIcon = GlukloaderYosemite.imageOfGlukitIcon
+    var currentSyncTag: SyncTag = GlukloaderUtils.loadSyncTagFromDisk()
     
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -55,9 +56,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         oauth2.authorize()
-        let fetcher = DexcomShareSyncManager(username: "CHANGE", password: "CHANGE", sessionId: nil)
-        let sessionId = fetcher.syncNewDataSince(NSDate.distantPast())
-        print("saved session id is \(sessionId)")
+        
+        let fetcher = DexcomShareSyncManager(username: "CHANGE", password: "CHANGE", transmitter: GlukitTransmitter(oauth2: oauth2))
+        fetcher.syncNewDataSince(currentSyncTag)
     }
 
     func applicationWillFinishLaunching(notification: NSNotification) {
