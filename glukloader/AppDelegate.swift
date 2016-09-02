@@ -45,7 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var usernameField: NSTextField!
     @IBOutlet var passwordField: NSSecureTextField!
     @IBOutlet var validationMessageField: NSTextField!
-    var statusBar: NSStatusItem!;
+    var statusBar: NSStatusItem!
+    var syncTimer: NSTimer?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -66,12 +67,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         oauth2.authorize()
         
+        startPeriodicSyncIfConfigured()
+    }
+
+    func startPeriodicSyncIfConfigured() {
+        if let _ = keychain.get(KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY), _ = keychain.get(KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY) {
+            self.syncTimer = NSTimer.scheduledTimerWithTimeInterval(60.0 * 60.0, target: self, selector: #selector(AppDelegate.runSync), userInfo: nil, repeats: true)
+            self.syncTimer!.fire()
+        }
+    }
+    
+    func runSync() {
         if let username = keychain.get(KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY), password = keychain.get(KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY) {
             let fetcher = DexcomShareSyncManager(username: username, password: password, transmitter: GlukitTransmitter(oauth2: oauth2))
             fetcher.syncNewDataSince(GlukloaderUtils.loadSyncTagFromDisk())
         }
     }
-
+    
+    
     func applicationWillFinishLaunching(notification: NSNotification) {
         NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector:#selector(AppDelegate.handleGetURLEvent(_:withReplyEvent:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
         
