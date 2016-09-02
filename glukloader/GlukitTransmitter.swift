@@ -28,7 +28,9 @@ class GlukitTransmitter {
                 print("Error sending \(reads.count) to glukit: \(error.localizedDescription)")
             }
             else {
-                print("Successfully sent \(reads.count) reads to glukit")
+                let syncTag = SyncTag(lastGlucoseReadTimestamp: reads.last?.time.timestamp)
+                print("Successfully sent \(reads.count) reads to glukit, saving sync tag \(syncTag)")
+                GlukloaderUtils.saveSyncTagToDisk(syncTag)
             }
         }
         

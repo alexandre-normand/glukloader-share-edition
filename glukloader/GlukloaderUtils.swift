@@ -37,8 +37,16 @@ class GlukloaderUtils {
         let path = self.pathForStateFile()
         do {
             let contents = try NSString(contentsOfFile: path, usedEncoding: nil) as String
-            let json = JSON(contents)
-            return SyncTag(lastGlucoseReadTimestamp: json["lastGlucoseReadTimestamp"].int64)
+            if let dataFromContent = contents.dataUsingEncoding(NSUTF8StringEncoding) {
+                let json = JSON(data: dataFromContent)
+                let loadedSyncTag = SyncTag(lastGlucoseReadTimestamp: json["lastGlucoseReadTimestamp"].int64)
+                print("Loaded sync tag from disk: \(loadedSyncTag)")
+                
+                return loadedSyncTag
+            } else {
+                print("Could not parse SyncTag from file \(path), defaulting to initial sync: \(contents)")
+                return SyncTag(lastGlucoseReadTimestamp: nil)
+            }
         } catch let error as NSError {
             print("Could not load SyncTag from file \(path), defaulting to initial sync: \(error.localizedDescription)")
             return SyncTag(lastGlucoseReadTimestamp: nil)

@@ -32,7 +32,6 @@ class DexcomShareSyncManager {
             .responseString { response in
                 if let result = response.result.value {
                     let sessionId = result.stringByTrimmingCharactersInSet(NSCharacterSet.init(charactersInString: "\""))
-                    print("session id is \(sessionId)")
                     
                     let glucoseRequestParams = [ "sessionId": sessionId, "minutes": "2100", "maxCount": "420"]
                     Alamofire.request(.POST, "https://share1.dexcom.com/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues", parameters: glucoseRequestParams, headers: headers, encoding: .URLEncodedInURL)
@@ -51,13 +50,14 @@ class DexcomShareSyncManager {
                                 
                                 if (reads.count > 0) {
                                     let newReads = reads.filter { $0.time.timestamp > syncTag.lastGlucoseReadTimestamp }
+                                    print("filtered reads after \(syncTag.lastGlucoseReadTimestamp)")
+                                    
                                     let sortedNewReads = newReads.sort { $1.time.timestamp > $0.time.timestamp }
                                     print("reads json: \(sortedNewReads.toJsonString(true)!)")
                                     
                                     GlukloaderUtils.saveGlucoseReadBatchToDisk(sortedNewReads)
                                     
-                                    self.transmitter.transmit(sortedNewReads)
-                                    GlukloaderUtils.saveSyncTagToDisk(SyncTag(lastGlucoseReadTimestamp: sortedNewReads.last?.time.timestamp))
+                                    self.transmitter.transmit(sortedNewReads)                                    
                                 } else {
                                     print("No new records found")
                                 }

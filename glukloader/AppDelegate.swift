@@ -46,7 +46,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var passwordField: NSSecureTextField!
     @IBOutlet var validationMessageField: NSTextField!
     var statusBar: NSStatusItem!;
-    var currentSyncTag: SyncTag = GlukloaderUtils.loadSyncTagFromDisk()
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -69,7 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let username = keychain.get(KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY), password = keychain.get(KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY) {
             let fetcher = DexcomShareSyncManager(username: username, password: password, transmitter: GlukitTransmitter(oauth2: oauth2))
-            fetcher.syncNewDataSince(currentSyncTag)
+            fetcher.syncNewDataSince(GlukloaderUtils.loadSyncTagFromDisk())
         }
     }
 
