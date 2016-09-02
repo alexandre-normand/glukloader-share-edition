@@ -8,6 +8,8 @@
 
 import Cocoa
 import p2_OAuth2
+import KeychainSwift
+import Alamofire
 
 //Example of GlukitSecrets (not to be committed):
 //struct GlukitSecrets {
@@ -28,15 +30,23 @@ let oauth2Settings = [
     ] as OAuth2JSON
 let oauth2 = OAuth2CodeGrant(settings: oauth2Settings)
 
+let KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY = "dexcomShare-username"
+let KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY = "dexcomShare-password"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let menuBarIcon = GlukloaderYosemite.imageOfGlukitIcon
+    let keychain = KeychainSwift()
     
+    @IBOutlet weak var settingsWindow: NSPanel!
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet var autoStartMenuItem: NSMenuItem!
+    @IBOutlet var saveSettingsButton: NSButton!
+    @IBOutlet var usernameField: NSTextField!
+    @IBOutlet var passwordField: NSSecureTextField!
+    @IBOutlet var validationMessageField: NSTextField!
     var statusBar: NSStatusItem!;
-    let menuBarIcon = GlukloaderYosemite.imageOfGlukitIcon
     var currentSyncTag: SyncTag = GlukloaderUtils.loadSyncTagFromDisk()
-    
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -57,8 +67,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         oauth2.authorize()
         
-        let fetcher = DexcomShareSyncManager(username: "CHANGE", password: "CHANGE", transmitter: GlukitTransmitter(oauth2: oauth2))
-        fetcher.syncNewDataSince(currentSyncTag)
+        if let username = keychain.get(KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY), password = keychain.get(KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY) {
+            let fetcher = DexcomShareSyncManager(username: username, password: password, transmitter: GlukitTransmitter(oauth2: oauth2))
+            fetcher.syncNewDataSince(currentSyncTag)
+        }
     }
 
     func applicationWillFinishLaunching(notification: NSNotification) {
@@ -171,6 +183,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func toggleAutoStart(sender: AnyObject!) {
         
+    }
+    
+    @IBAction func openSettings(sender: AnyObject!) {
+        settingsWindow.setIsVisible(true)
+    }
+    
+    @IBAction func validateAndSaveSettings(sender: AnyObject!) {
+        // Disable save button to prevent user from initiating multiple validation requests
+        saveSettingsButton.enabled = false
+        
+        let headers = [ "User-Agent": "Dexcom Share/3.0.2.11 CFNetwork/711.2.23 Darwin/14.0.0"]
+        let parameters = [ "accountName": usernameField.stringValue,
+                           "password": passwordField.stringValue,
+                           "applicationId": "d89443d2-327c-4a6f-89e5-496bbb0317db"]
+        
+        Alamofire.request(.POST, "https://share1.dexcom.com/ShareWebServices/Services/General/LoginPublisherAccountByName", parameters: parameters, headers: headers, encoding: .JSON)
+            .validate()
+            .responseString { response in
+                switch response.result {
+                case .Success:
+                    print("Validation Successful")
+                    self.validationMessageField.stringValue = "Login successful"
+                    self.keychain.set(self.usernameField.stringValue, forKey: KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY)
+                    self.keychain.set(self.passwordField.stringValue, forKey: KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY)
+                    self.saveSettingsButton.enabled = true
+                    self.settingsWindow.setIsVisible(false)
+                case .Failure(let error):
+                    print("Error validating dexcom share credentials \(error.localizedDescription)")
+                    self.validationMessageField.stringValue = "Invalid credentials, could not log in"
+                    self.saveSettingsButton.enabled = true
+                }
+        }
     }
     
     func windowWillReturnUndoManager(window: NSWindow) -> NSUndoManager? {

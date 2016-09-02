@@ -8,4 +8,5 @@ target 'glukloader' do
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
     pod 'SwiftSerializer', '~> 0.6'
     pod 'p2.OAuth2'
+    pod 'KeychainSwift', '~> 3.0'
 end

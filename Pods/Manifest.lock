@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.4.1)
+  - KeychainSwift (3.0.16)
   - p2.OAuth2 (2.2.8):
     - SwiftKeychain (~> 1.0)
   - SwiftKeychain (1.0.0)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
+  - KeychainSwift (~> 3.0)
   - p2.OAuth2
   - SwiftSerializer (~> 0.6)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -23,11 +25,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  KeychainSwift: a5bb85cd498ce2217b55e055ec59e9268d83384c
   p2.OAuth2: d85bbf19a6a65ab2c0e93d5cfee94279523882fe
   SwiftKeychain: fd9ad69f7b3ff7a0c7ba579da508bbaa89a395b2
   SwiftSerializer: d8376bfa5ab0eaf0f16b7fc19e684116617f43da
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 02e92ab420c8abf445b2dfb1407ab5bcffd7e577
+PODFILE CHECKSUM: 6980d6cb38b5343b23099872623f2950b9c26a4e
 
 COCOAPODS: 1.0.1

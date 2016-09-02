@@ -15,7 +15,12 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="glukloader" customModuleProvider="target">
             <connections>
                 <outlet property="autoStartMenuItem" destination="TTA-mD-fb0" id="hJm-bm-jsu"/>
+                <outlet property="passwordField" destination="d6v-Nq-LzB" id="Aiw-BS-qTE"/>
+                <outlet property="saveSettingsButton" destination="LQp-9Y-VSK" id="ot9-Xm-iQP"/>
+                <outlet property="settingsWindow" destination="BS8-qo-jRp" id="96g-4b-hVV"/>
                 <outlet property="statusMenu" destination="lry-a0-DjE" id="rk1-Js-L5b"/>
+                <outlet property="usernameField" destination="Nzq-hT-iSE" id="vuv-dl-Uy8"/>
+                <outlet property="validationMessageField" destination="6Je-cI-27E" id="h7e-y5-vMQ"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -23,9 +28,9 @@
             <items>
                 <menuItem title="Settings..." id="cdg-BT-ww6" userLabel="DexcomShare Settings Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Authenticate" id="QQL-vc-nWB">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openSettings:" target="Voe-Tx-rLC" id="qwR-bf-zkO"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Start at login" id="TTA-mD-fb0">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -134,11 +139,14 @@
                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="75a-rH-wCO">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="validateAndSaveSettings:" target="Voe-Tx-rLC" id="RFF-sx-udG"/>
+                            </connections>
                         </buttonCell>
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="1017" y="198.5"/>
+            <point key="canvasLocation" x="826" y="250.5"/>
         </window>
     </objects>
 </document>

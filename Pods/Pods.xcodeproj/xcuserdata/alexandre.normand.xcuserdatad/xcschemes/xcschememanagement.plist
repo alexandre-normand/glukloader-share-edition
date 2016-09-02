@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KeychainSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-glukloader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1FB364273C0BC3C0E2EAE5E93DCD2351</key>
+		<key>2209D2DE3F33E6360D91972B41EF0FC0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2209D2DE3F33E6360D91972B41EF0FC0</key>
+		<key>2E8F5C51CEDE9724FFA3AB7C618D0952</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C698C648EE4D43C6B8BE0BE1FE91737</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9FC30B0BC4D181E1CFBC606A681DFD49</key>
+		<key>8129EE53FCD82DC171E00E11AF27673D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA317D247AA97DB2AF1DE10110B839DB</key>
+		<key>9205F23C9C16FF513C0B6D0CCDDEB70D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
