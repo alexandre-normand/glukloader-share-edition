@@ -49,6 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var syncTimer: NSTimer?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        let sharedWorkspace = NSWorkspace.sharedWorkspace()
+        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveSleepNotification(_:)), name: "NSWorkspaceWillSleep", object: nil)
+        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveWakeNotification(_:)), name: "NSWorkspaceDidWake", object: nil)
         
         self.statusBar = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
         
@@ -57,11 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         
         oauth2.onAuthorize = { parameters in
-            print("Did authorize with parameters: \(parameters)")
+            NSLog("Did authorize with parameters: \(parameters)")
         }
         oauth2.onFailure = { error in        // `error` is nil on cancel
             if let error = error {
-                print("Authorization went wrong: \(error)")
+                NSLog("Authorization went wrong: \(error)")
             }
         }
         
@@ -92,6 +95,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+    }
+    
+    func receiveSleepNotification(notification: NSNotification) {
+        NSLog("Sleep notification received: \(notification.name)")
+        self.syncTimer?.invalidate()
+        self.syncTimer = nil
+    }
+
+    func receiveWakeNotification(notification: NSNotification) {
+        NSLog("Wake nottification received: \(notification.name)")
+        startPeriodicSyncIfConfigured()
     }
 
     // MARK: - Core Data stack
@@ -215,14 +229,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .responseString { response in
                 switch response.result {
                 case .Success:
-                    print("Validation Successful")
+                    NSLog("Validation Successful")
                     self.validationMessageField.stringValue = "Login successful"
                     self.keychain.set(self.usernameField.stringValue, forKey: KEYCHAIN_DEXCOM_SHARE_USERNAME_KEY)
                     self.keychain.set(self.passwordField.stringValue, forKey: KEYCHAIN_DEXCOM_SHARE_PASSWORD_KEY)
                     self.saveSettingsButton.enabled = true
                     self.settingsWindow.setIsVisible(false)
                 case .Failure(let error):
-                    print("Error validating dexcom share credentials \(error.localizedDescription)")
+                    NSLog("Error validating dexcom share credentials \(error.localizedDescription)")
                     self.validationMessageField.stringValue = "Invalid credentials, could not log in"
                     self.saveSettingsButton.enabled = true
                 }

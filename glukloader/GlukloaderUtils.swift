@@ -21,7 +21,7 @@ class GlukloaderUtils {
                 try fileManager.createDirectoryAtPath(folder, withIntermediateDirectories: true, attributes: nil)
             }
             catch let error as NSError {
-                print("Error creating directory to hold data and state: \(error.localizedDescription)");
+                NSLog("Error creating directory to hold data and state: \(error.localizedDescription)");
             }
         }
         
@@ -40,15 +40,15 @@ class GlukloaderUtils {
             if let dataFromContent = contents.dataUsingEncoding(NSUTF8StringEncoding) {
                 let json = JSON(data: dataFromContent)
                 let loadedSyncTag = SyncTag(lastGlucoseReadTimestamp: json["lastGlucoseReadTimestamp"].int64)
-                print("Loaded sync tag from disk: \(loadedSyncTag)")
+                NSLog("Loaded sync tag from disk: \(loadedSyncTag)")
                 
                 return loadedSyncTag
             } else {
-                print("Could not parse SyncTag from file \(path), defaulting to initial sync: \(contents)")
+                NSLog("Could not parse SyncTag from file \(path), defaulting to initial sync: \(contents)")
                 return SyncTag(lastGlucoseReadTimestamp: nil)
             }
         } catch let error as NSError {
-            print("Could not load SyncTag from file \(path), defaulting to initial sync: \(error.localizedDescription)")
+            NSLog("Could not load SyncTag from file \(path), defaulting to initial sync: \(error.localizedDescription)")
             return SyncTag(lastGlucoseReadTimestamp: nil)
         }
     }
@@ -59,7 +59,7 @@ class GlukloaderUtils {
         do {
           try serializedSyncTag!.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
         } catch let error as NSError {
-            print("Could not save SyncTag to file \(path), will reload from previous state next time: \(error.localizedDescription)")
+            NSLog("Could not save SyncTag to file \(path), will reload from previous state next time: \(error.localizedDescription)")
         }
     }
     
@@ -82,7 +82,7 @@ class GlukloaderUtils {
         do {
             try reads.toJsonString(true)?.writeToFile(recordFullPath, atomically: true, encoding: NSUTF8StringEncoding)
         } catch let error as NSError {
-            print("Could not save records to file \(recordFullPath): \(error.localizedDescription)")
+            NSLog("Could not save records to file \(recordFullPath): \(error.localizedDescription)")
         }
     }
 }

@@ -50,16 +50,20 @@ class DexcomShareSyncManager {
                                 
                                 if (reads.count > 0) {
                                     let newReads = reads.filter { $0.time.timestamp > syncTag.lastGlucoseReadTimestamp }
-                                    print("filtered reads after \(syncTag.lastGlucoseReadTimestamp)")
+                                    NSLog("filtered reads after \(syncTag.lastGlucoseReadTimestamp)")
                                     
-                                    let sortedNewReads = newReads.sort { $1.time.timestamp > $0.time.timestamp }
-                                    print("reads json: \(sortedNewReads.toJsonString(true)!)")
-                                    
-                                    GlukloaderUtils.saveGlucoseReadBatchToDisk(sortedNewReads)
-                                    
-                                    self.transmitter.transmit(sortedNewReads)                                    
+                                    if (newReads.count > 0) {
+                                        let sortedNewReads = newReads.sort { $1.time.timestamp > $0.time.timestamp }
+                                        print("reads json: \(sortedNewReads.toJsonString(true)!)")
+                                        
+                                        GlukloaderUtils.saveGlucoseReadBatchToDisk(sortedNewReads)
+                                        
+                                        self.transmitter.transmit(sortedNewReads)
+                                    } else {
+                                        NSLog("No new records found")
+                                    }
                                 } else {
-                                    print("No new records found")
+                                    NSLog("No records found")
                                 }
                                 
                             }

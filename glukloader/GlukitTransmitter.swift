@@ -25,11 +25,11 @@ class GlukitTransmitter {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = oauth2.session.dataTaskWithRequest(request) { data, response, error in
             if let error = error {
-                print("Error sending \(reads.count) to glukit: \(error.localizedDescription)")
+                NSLog("Error sending \(reads.count) to glukit: \(error.localizedDescription)")
             }
             else {
                 let syncTag = SyncTag(lastGlucoseReadTimestamp: reads.last?.time.timestamp)
-                print("Successfully sent \(reads.count) reads to glukit, saving sync tag \(syncTag)")
+                NSLog("Successfully sent \(reads.count) reads to glukit, saving sync tag \(syncTag)")
                 GlukloaderUtils.saveSyncTagToDisk(syncTag)
             }
         }
