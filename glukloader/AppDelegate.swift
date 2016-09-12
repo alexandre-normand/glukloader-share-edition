@@ -50,8 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         let sharedWorkspace = NSWorkspace.sharedWorkspace()
-        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveSleepNotification(_:)), name: "NSWorkspaceWillSleep", object: nil)
-        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveWakeNotification(_:)), name: "NSWorkspaceDidWake", object: nil)
+        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveSleepNotification(_:)), name: NSWorkspaceWillSleepNotification, object: nil)
+        sharedWorkspace.notificationCenter.addObserver(self, selector: #selector(AppDelegate.receiveWakeNotification(_:)), name: NSWorkspaceDidWakeNotification, object: nil)
         
         self.statusBar = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
         

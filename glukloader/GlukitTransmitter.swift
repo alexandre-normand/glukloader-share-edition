@@ -30,6 +30,11 @@ class GlukitTransmitter {
             else {
                 let syncTag = SyncTag(lastGlucoseReadTimestamp: reads.last?.time.timestamp)
                 NSLog("Successfully sent \(reads.count) reads to glukit, saving sync tag \(syncTag)")
+                let notification = NSUserNotification()
+                notification.title = "Glukit Sync"
+                notification.informativeText = "Successfully sent \(reads.count) reads to glukit"
+                NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+                
                 GlukloaderUtils.saveSyncTagToDisk(syncTag)
             }
         }
