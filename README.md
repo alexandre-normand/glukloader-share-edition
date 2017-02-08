@@ -14,7 +14,7 @@ Something like:
 
 ```
 struct GlukitSecrets {
-    static let clientId = "***REMOVED***"
-    static let clientSecret = "***REMOVED***"
+    static let clientId = "***CLIENT_ID***"
+    static let clientSecret = "***SECRET***"
 }
 ```
