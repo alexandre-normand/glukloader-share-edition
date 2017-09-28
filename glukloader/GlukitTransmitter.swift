@@ -19,6 +19,9 @@ class GlukitTransmitter {
     }
     
     func transmit(reads: [GlucoseRead]) {
+        // Run authorization prior to every request in case it's expired
+        oauth2.authorize()
+        
         let request = self.oauth2.request(forURL: NSURL(string: GLUCOSE_READ_ENDPOINT)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = reads.toJson(true)
